@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Funciones de instalación y esquema para el módulo ingresar_evento.
+ */
+
+function ingresar_evento_schema() {
+  $schema['ingresar_evento_registros'] = [
+    'description' => 'Guarda los datos del formulario antes de enviarlos a DSpace 9.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'ID primario del registro local.',
+      ],
+      'titulo' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'autor' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'fecha' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
+      'descripcion' => [
+        'type' => 'text',
+        'not null' => TRUE,
+      ],
+      'palabras_clave' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'estado' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'default' => 'Pendiente',
+      ],
+      'dspace_uuid' => [
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => FALSE,
+        'description' => 'UUID asignado por DSpace 9.',
+      ],
+      'dspace_handle' => [
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => FALSE,
+        'description' => 'Handle asignado por DSpace 9.',
+      ],
+      'thumbnails_evento' => [
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => FALSE,
+        'description' => 'Generado por servicio Drupal 11.',
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}

@@ -1,0 +1,7 @@
+name: 'Ingresar Evento DSpace SaberULA'
+type: module
+description: 'Formulario personalizado para enviar ítems tipo Evento a DSpace 9 mediante API REST.'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:user
