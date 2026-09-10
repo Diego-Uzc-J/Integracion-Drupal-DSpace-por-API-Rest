@@ -1,0 +1,4 @@
+services:
+  ingresar_evento.event_image_generator:
+    class: Drupal\ingresar_evento\Services\EventImageGenerator
+    arguments: ['%app.root%']
