@@ -1,0 +1,107 @@
+.evento-detalle-container {
+  max-width: 1200px;
+  margin: 1rem 0;
+}
+
+.evento-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.evento-header h2 {
+  margin: 0 !important;
+  flex: 1 1 auto !important; 
+}
+
+.badge-estado {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  padding: 0.4rem 0.9rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  border-radius: 20px !important;
+  text-align: center !important;
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Estados */
+.badge-estado.state-pendiente {
+  background-color: #fff3cd !important;
+  color: #856404 !important;
+  border: 1px solid #ffeeba !important;
+}
+
+.badge-estado.state-enviado,
+.badge-estado.state-exitoso {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #c3e6cb !important;
+}
+
+/* Estructura Grid a 2 columnas */
+.evento-grid {
+  display: grid !important;
+  grid-template-columns: 2fr 1fr !important;
+  gap: 1.5rem !important;
+}
+
+.card {
+  background: #ffffff !important;
+  border: 1px solid #dedede !important;
+  border-radius: 4px !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.card-accent {
+  border-top: 4px solid #0076ed !important;
+  background-color: #fbfbfb !important;
+}
+
+/* Lista de Metadatos */
+.metadata-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.metadata-item dt, 
+.dspace-info dt {
+  font-weight: bold !important;
+  font-size: 0.8rem !important;
+  color: #555 !important;
+  text-transform: uppercase !important;
+}
+
+.metadata-item dd, 
+.dspace-info dd {
+  margin: 0.25rem 0 0 0 !important;
+}
+
+.tag {
+  display: inline-block !important;
+  background: #eef2f5 !important;
+  border: 1px solid #d0d7de !important;
+  padding: 0.2rem 0.5rem !important;
+  border-radius: 3px !important;
+  font-size: 0.8rem !important;
+  margin: 0.2rem 0.2rem 0.2rem 0 !important;
+}
+
+/* Mensaje sobre imagen generada programaticamente */
+.aclaratoria {
+  display: block;
+  font-size: 0.8em;
+  color: #666666;
+  margin-top: 10px;
+  line-height: 1.4;
+}

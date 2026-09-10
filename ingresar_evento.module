@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function ingresar_evento_theme($existing, $type, $theme, $path): array {
+  return [
+    'ingresar_evento_detalle' => [
+      'variables' => [
+        'titulo' => NULL,
+        'autor' => NULL,
+        'fecha' => NULL,
+        'descripcion' => NULL,
+        'palabras_clave' => NULL,
+        'adjunto_fid' => NULL,
+        'estado' => NULL,
+        'dspace_uuid' => NULL,
+        'dspace_handle' => NULL,
+        'thumbnails_evento' => NULL,
+      ],
+      'template' => 'ingresar-evento-detalle',
+    ],
+  ];
+}

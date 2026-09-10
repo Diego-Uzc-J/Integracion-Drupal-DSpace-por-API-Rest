@@ -1,0 +1,15 @@
+ingresar_evento.formulario:
+  path: '/evento'
+  defaults:
+    _form: '\Drupal\ingresar_evento\Form\IngresarEventoForm'
+    _title: 'Registrar Nuevo Item para DSpace'
+  requirements:
+    _permission: 'access content'
+    
+ingresar_evento.detalle:
+  path: '/admin/ver-evento/{evento_id}'
+  defaults:
+    _controller: '\Drupal\ingresar_evento\Controller\EventoDetalleController::detalle'
+    _title: 'Detalle del Evento'
+  requirements:
+    _role: 'moderador,administrator'

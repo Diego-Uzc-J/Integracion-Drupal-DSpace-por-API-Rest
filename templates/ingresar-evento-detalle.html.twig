@@ -1,0 +1,91 @@
+{{ attach_library('ingresar_evento/detalle_evento') }}
+<div class="evento-detalle-container">
+  {# Encabezado principal con badge de estado #}
+  <header class="evento-header">
+    <h2>{{ titulo }}</h2>
+    <span class="badge-estado state-{{ estado|clean_class }}">
+      {{ estado }}
+    </span>
+  </header>
+
+  <div class="evento-grid">
+    {# Columna Principal: Contenido e Imagen #}
+    <main class="evento-main-content">
+      <section class="card">
+        <h3>Detalles del Evento</h3>
+        <dl class="metadata-list">
+          <div class="metadata-item">
+            <dt>Autor</dt>
+            <dd>{{ autor }}</dd>
+          </div>
+          <div class="metadata-item">
+            <dt>Fecha del Evento</dt>
+            <dd>{{ fecha }}</dd>
+          </div>
+          <div class="metadata-item">
+            <dt>Palabras Clave</dt>
+            <dd>
+              {% for tag in palabras_clave|split(',') %}
+                <span class="tag">{{ tag|trim }}</span>
+              {% else %}
+                {{ palabras_clave }}
+              {% endfor %}
+            </dd>
+          </div>
+        </dl>
+
+        <div class="evento-descripcion">
+          <h4>Descripción</h4>
+          <p>{{ descripcion }}</p>
+        </div>
+      </section>
+
+      {% if thumbnails_evento %}
+        <section class="card">
+          <h3>Adjunto / Vista previa</h3>
+          <div class="evento-imagen-wrapper">
+            <img src="{{ thumbnails_evento }}" alt="Imagen adjunta del evento {{ titulo }}" />
+          </div>
+            <small class="aclaratoria">
+              * Imagen generada programaticamente basada en la fecha del evento.
+            </small>
+        </section>
+      {% endif %}
+      
+    </main>
+
+    {# Columna Lateral: Estado e Integración con DSpace #}
+    <aside class="evento-sidebar">
+      <section class="card card-accent">
+        <h3>Integración DSpace</h3>
+        <dl class="dspace-info">
+          <dt>Estado de Envío</dt>
+          <dd><strong>{{ estado }}</strong></dd>
+
+          <dt>UUID del Objeto</dt>
+          <dd><code>{{ dspace_uuid ?? 'N/A' }}</code></dd>
+
+          <dt>Handle DSpace</dt>
+          <dd>
+            {% if dspace_handle %}
+              <a href="https://hdl.handle.net/{{ dspace_handle }}" target="_blank" rel="noopener noreferrer" class="button button--small button--action">
+                Ver en DSpace ({{ dspace_handle }})
+              </a>
+            {% else %}
+              <span class="text-muted">Pendiente de asignación</span>
+            {% endif %}
+          </dd>
+        </dl>
+      </section>
+      
+      {% if estado == 'Pendiente' %} 
+        <section class="card">
+          <h3>Enviar al Repositorio</h3>
+              <a href="/admin/dspace-moderacion/enviar/{{ id }}" target="_blank" rel="noopener noreferrer" class="button button--small button--primary">
+                Enviar a DSpace
+              </a>
+        </section>
+      {% endif %}
+    </aside>
+  </div>
+</div>
