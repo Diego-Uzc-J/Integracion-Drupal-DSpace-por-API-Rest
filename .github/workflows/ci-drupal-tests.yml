@@ -1,0 +1,70 @@
+name: Drupal 11 Tests
+
+on:
+  push:
+    branches: [ "main", "11.x" ]
+  pull_request:
+    branches: [ "main", "11.x" ]
+
+jobs:
+  drupal-tests:
+    runs-on: ubuntu-latest
+
+    # Definir variables globales para que PHPUnit y sus subprocesos las lean sin falta
+    env:
+      SIMPLETEST_DB: 'mysql://root@127.0.0.1/drupal'
+      SIMPLETEST_BASE_URL: 'http://127.0.0.1:8080'
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: drupal
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: mbstring, gd, opcache, pdo, pdo_mysql, zip
+        coverage: none
+
+    - name: Instalar Drupal Core y Dependencias de Desarrollo
+      run: |
+        composer create-project drupal/recommended-project:^11 tmp_drupal --no-interaction
+        cd tmp_drupal
+        composer require --dev drupal/core-dev:^11 --no-interaction -W
+
+    - name: Simular el módulo en la estructura de Drupal
+      run: |
+        mkdir -p tmp_drupal/web/modules/custom/ingresar_evento
+        rsync -av --exclude='tmp_drupal' ./ tmp_drupal/web/modules/custom/ingresar_evento/
+
+    - name: Configurar archivo phpunit.xml y Directorios de Output
+      run: |
+        cd tmp_drupal
+        # Crear la ruta partiendo desde donde se ejecuta phpunit
+        mkdir -p web/sites/simpletest/browser_output
+        chmod -R 777 web/sites/simpletest
+        
+        cp web/core/phpunit.xml.dist web/core/phpunit.xml
+        sed -i 's|name="BROWSERTEST_OUTPUT_DIRECTORY" value=".*"|name="BROWSERTEST_OUTPUT_DIRECTORY" value="web/sites/simpletest/browser_output"|g' web/core/phpunit.xml
+
+    - name: Levantar servidor PHP incorporado (para Functional Tests)
+      run: |
+        cd tmp_drupal/web
+        php -S 127.0.0.1:8080 > /dev/null 2>&1 &
+        sleep 3
+
+    - name: Ejecutar Tests (Kernel y Functional)
+      run: |
+        cd tmp_drupal/web
+        # Se ejecuta desde la carpeta 'web' para que las rutas relativas coincidan perfectamente
+        ../vendor/bin/phpunit -c core modules/custom/ingresar_evento/tests/
