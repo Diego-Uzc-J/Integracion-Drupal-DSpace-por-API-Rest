@@ -34,6 +34,8 @@ class EventoDetalleController extends ControllerBase {
     }
 
     $build = [];
+
+    $imagen_url = NULL;
     
     $realPath_thumbnails_evento = NULL;
     if(isset( $evento->thumbnails_evento )) {
@@ -49,7 +51,6 @@ class EventoDetalleController extends ControllerBase {
       '#fecha' => $evento->fecha,
       '#descripcion' => $evento->descripcion,
       '#palabras_clave' => $evento->palabras_clave,
-      '#adjunto_fid' => $evento->adjunto_fid,
       '#estado' => $evento->estado ?? 'Pendiente',
       '#dspace_uuid' => $evento->dspace_uuid ?? 'Por asignar',
       '#dspace_handle' => $evento->dspace_handle ?? 'Por asignar',

@@ -1,0 +1,4 @@
+administer ingresar_evento:
+  title: 'Administrar y moderar eventos para DSpace'
+  description: 'Permite a los usuarios acceder al formulario de moderación y enviar registros a DSpace.'
+  restrict access: true

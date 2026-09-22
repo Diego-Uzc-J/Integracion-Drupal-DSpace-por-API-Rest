@@ -1,0 +1,27 @@
+/* Badges de estado en el listado */
+.badge-status {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.badge-status.color-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.badge-status.color-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Formato de UUID para tooltip */
+code[title] {
+  cursor: help;
+  border-bottom: 1px dashed #666;
+}

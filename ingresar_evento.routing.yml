@@ -12,4 +12,21 @@ ingresar_evento.detalle:
     _controller: '\Drupal\ingresar_evento\Controller\EventoDetalleController::detalle'
     _title: 'Detalle del Evento'
   requirements:
-    _role: 'moderador,administrator'
+    _permission: 'administer ingresar_evento'
+
+ingresar_evento.moderacion:
+  path: '/admin/dspace-moderacion'
+  defaults:
+    _controller: '\Drupal\ingresar_evento\Controller\ModeracionController::listar'
+    _title: 'Moderación de Envíos a DSpace 9'
+  requirements:
+    _permission: 'administer ingresar_evento'
+
+ingresar_evento.enviar_dspace:
+  path: '/admin/dspace-moderacion/enviar/{id}'
+  defaults:
+    _controller: '\Drupal\ingresar_evento\Controller\ModeracionController::enviarADSpace'
+  requirements:
+    _permission: 'administer ingresar_evento'
+    _csrf_token: 'TRUE'
+
