@@ -8,7 +8,7 @@
 [![PHPUnit Tests](https://img.shields.io/badge/Tests-Kernel%20%7C%20Functional-brightgreen.svg)](https://phpunit.de)
 [![PHP](https://img.shields.io/badge/PHP-8.3%2B-777BB4.svg?logo=php)](https://www.php.net)
 
-Módulo personalizado para **Drupal 11** diseñado para facilitar el registro público y anonimizado de eventos académicos relacionados con la institución, incorporando un flujo de trabajo con moderación editorial y sincronización de ítems y adjuntos hacia un repositorio institucional **DSpace 9** mediante su API REST.
+Módulo personalizado para **Drupal 11** diseñado para facilitar el registro público y anonimizado de eventos académicos relacionados con la institución, incorporando un flujo de trabajo con moderación editorial y sincronización de ítems y adjuntos hacia un repositorio institucional **DSpace 9** mediante su API REST. Incluye la generación automática de una imagen (thumbnail) personalizada basada en la fecha del evento, la cual se adjunta como bitstream al repositorio.
 
 ---
 
