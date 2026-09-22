@@ -8,3 +8,6 @@ services:
   ingresar_evento.dspace_connector:
     class: Drupal\ingresar_evento\Services\DSpaceConnectorService
     arguments: ['@http_client', '@file_system', '@logger.channel.ingresar_evento', '@messenger', '@string_translation']
+  ingresar_evento.test_dspace_service:
+    class: Drupal\ingresar_evento\Services\TestDSpaceService
+    arguments: ['@http_client', '@config.factory']
